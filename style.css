@@ -1,0 +1,283 @@
+:root {
+    --roxo-escuro: #2D1B69;
+    --roxo-medio: #5E43F3;
+    --roxo-claro: #8A6DF1;
+    --roxo-brilhante: #A891F7;
+    --roxo-neon: #C0B2FC;
+    --texto-claro: #F5F3FF;
+    --texto-branco: #FFFFFF;
+    --gradiente-roxo: linear-gradient(135deg, var(--roxo-escuro) 0%, var(--roxo-medio) 100%);
+    --gradiente-botoes: linear-gradient(135deg, var(--roxo-medio) 0%, var(--roxo-claro) 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0F082C;
+    color: var(--texto-claro);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* Efeito de estrelas de fundo */
+.stars, .stars2, .stars3 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.stars:before, .stars2:before, .stars3:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--roxo-neon), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, var(--roxo-brilhante), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 90px 40px, var(--texto-claro), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, var(--roxo-claro), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 160px 30px, var(--texto-claro), rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    opacity: 0.6;
+}
+
+.stars2:before {
+    animation: anim-stars 20s linear infinite;
+}
+
+.stars3:before {
+    animation: anim-stars 30s linear infinite;
+}
+
+@keyframes anim-stars {
+    from {
+        transform: translateY(0px);
+    }
+    to {
+        transform: translateY(-200px);
+    }
+}
+
+.caixa-principal {
+    background: var(--gradiente-roxo);
+    width: 100%;
+    max-width: 700px;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                0 0 30px rgba(168, 145, 247, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.caixa-principal:before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    transform: rotate(30deg);
+    z-index: -1;
+}
+
+.header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+h1 {
+    color: var(--texto-branco);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px rgba(168, 145, 247, 0.7);
+}
+
+h1 i {
+    color: var(--roxo-neon);
+    margin-right: 10px;
+}
+
+.progresso {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.barra-progresso {
+    flex-grow: 1;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progresso-atual {
+    height: 100%;
+    width: 0%;
+    background: var(--gradiente-botoes);
+    border-radius: 5px;
+    transition: width 0.5s ease;
+}
+
+.contador-pergunta {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--roxo-neon);
+}
+
+.caixa-perguntas {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    text-align: center;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.caixa-perguntas p {
+    font-weight: 500;
+}
+
+.caixa-alternativas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: var(--gradiente-botoes);
+    color: var(--texto-branco);
+    border: none;
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(94, 67, 243, 0.3);
+}
+
+button i {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(94, 67, 243, 0.5);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
+.caixa-resultado {
+    display: none;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.caixa-resultado h2 {
+    color: var(--roxo-neon);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-shadow: 0 0 8px rgba(168, 145, 247, 0.5);
+}
+
+.texto-resultado {
+    line-height: 1.6;
+    font-size: 17px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    text-align: left;
+    backdrop-filter: blur(5px);
+}
+
+.btn-reiniciar {
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--roxo-neon);
+}
+
+.btn-reiniciar:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.caixa-perguntas, .caixa-alternativas button {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+    .caixa-principal {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 22px;
+    }
+    
+    .caixa-perguntas {
+        font-size: 16px;
+    }
+    
+    button {
+        padding: 14px;
+        font-size: 14px;
+    }
+    
+    .progresso {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .barra-progresso {
+        width: 100%;
+    }
+}
